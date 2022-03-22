@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { TrafficControl } from '../../../../types/Iter8';
-import { IRow, Table, TableBody, TableHeader } from '@patternfly/react-table';
+// import { IRow, Table, TableBody, TableHeader } from '@patternfly/react-table';
+import { IRow } from '@patternfly/react-table';
 import {
   Card,
   CardBody,
@@ -9,25 +10,25 @@ import {
   DataListItem,
   DataListItemCells,
   DataListItemRow,
-  EmptyState,
-  EmptyStateBody,
-  EmptyStateVariant,
+  // EmptyState,
+  // EmptyStateBody,
+  // EmptyStateVariant,
   Grid,
-  FlexItem,
+  // FlexItem,
   GridItem,
-  PopoverPosition,
+  // PopoverPosition,
   Text,
-  Title,
-  Tooltip
+  // Title,
+  // Tooltip
 } from '@patternfly/react-core';
 import equal from 'fast-deep-equal';
-import { style } from 'typestyle';
-import { KialiIcon } from '../../../../config/KialiIcon';
+// import { style } from 'typestyle';
+// import { KialiIcon } from '../../../../config/KialiIcon';
 
-const infoStyle = style({
-  margin: '0px 16px 2px 4px'
-});
-const containerPadding = style({ padding: '20px' });
+// const infoStyle = style({
+//   margin: '0px 16px 2px 4px'
+// });
+// const containerPadding = style({ padding: '20px' });
 
 interface TrafficControlInfoProps {
   trafficControl: TrafficControl;
@@ -95,7 +96,7 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
   };
 
   render() {
-    const { columns, rows } = this.state;
+    // const { columns, rows } = this.state;
     return (
       <Grid>
         <GridItem span={12}>
@@ -108,8 +109,8 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                       dataListCells={
                         <DataListCell key="strategy">
                           <Text>
-                            <b>Traffic Strategy</b>
-                            <Tooltip
+                            <b>流量控制策略</b>
+                            {/* <Tooltip
                               key={'winnerTooltip'}
                               aria-label={'Winner Tooltip'}
                               position={PopoverPosition.auto}
@@ -120,21 +121,21 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                                     <td style={{ verticalAlign: 'top' }}>
                                       <div style={{ width: '100px' }}>progressive:</div>
                                     </td>
-                                    <td>Progressively shift all traffic to the winner.</td>
+                                    <td>渐进式导入全部流量至获胜版本</td>
                                   </tr>
                                   <tr>
                                     <td>top_2:&nbsp;</td>
-                                    <td>Converge towards a 50-50 traffic split between the best two versions</td>
+                                    <td>在性能评估表现最佳的两个版本之间平分流量</td>
                                   </tr>
                                   <tr>
                                     <td>uniform:&nbsp;</td>
-                                    <td>Converge towards a uniform traffic split across all versions.</td>
+                                    <td>所有版本平分流量</td>
                                   </tr>
                                 </table>
                               }
                             >
                               <KialiIcon.Info className={infoStyle} />
-                            </Tooltip>
+                            </Tooltip> */}
                             : {this.props.trafficControl.strategy ? this.props.trafficControl.strategy : 'progressive'}
                           </Text>
                         </DataListCell>
@@ -144,8 +145,8 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                       dataListCells={
                         <DataListCell key="strategy">
                           <Text>
-                            <b>Max Increment </b>
-                            <Tooltip
+                            <b>单次实验最大流量增量 </b>
+                            {/* <Tooltip
                               key={'winnerTooltip'}
                               aria-label={'Winner Tooltip'}
                               position={PopoverPosition.auto}
@@ -157,7 +158,7 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                               }
                             >
                               <KialiIcon.Info className={infoStyle} />
-                            </Tooltip>
+                            </Tooltip> */}
                             : {this.props.trafficControl.maxIncrement} {'%'}
                           </Text>
                         </DataListCell>
@@ -167,8 +168,8 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                       dataListCells={
                         <DataListCell key="strategy">
                           <Text>
-                            <b>On Termination </b>
-                            <Tooltip
+                            <b>实验结束后执行 </b>
+                            {/* <Tooltip
                               key={'winnerTooltip'}
                               aria-label={'Winner Tooltip'}
                               position={PopoverPosition.auto}
@@ -203,7 +204,7 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                               }
                             >
                               <KialiIcon.Info className={infoStyle} />
-                            </Tooltip>
+                            </Tooltip> */}
                             :{' '}
                             {this.props.trafficControl.onTermination
                               ? this.props.trafficControl.onTermination
@@ -216,7 +217,7 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                 </DataListItem>
               </DataList>
 
-              <FlexItem>
+              {/* <FlexItem>
                 <div className={containerPadding}>
                   <Title headingLevel="h6" size="lg">
                     Match Rules
@@ -253,7 +254,7 @@ class TrafficControlInfo extends React.Component<TrafficControlInfoProps, State>
                     )}
                   </Table>
                 </div>
-              </FlexItem>
+              </FlexItem> */}
             </CardBody>
           </Card>
         </GridItem>

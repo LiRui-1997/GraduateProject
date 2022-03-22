@@ -17,6 +17,8 @@ import ExperimentDetailsPage from './pages/extensions/iter8/Iter8ExperimentDetai
 import ExperimentCreateFromFileContainer from './pages/extensions/iter8/Iter8ExperimentDetails/ExperimentCreateFromFile';
 import MeshPage from 'pages/Mesh/MeshPage';
 import Metrics from './pages/extensions/iter8/metrics/Metrics';
+import Traffic from './pages/extensions/iter8/TrafficInjection/Traffic';
+import GSetup from './pages/extensions/iter8/GlobalSetup/GSetup';
 
 /**
  * Return array of objects that describe vertical menu
@@ -45,15 +47,25 @@ const navItems: MenuItem[] = [
   // },
 
   {
-    title: '性能指标监控',
-    to: '/' + Paths.APPLICATIONS,
+    title: '性能指标监控工具',
+    to: '/' + Paths.Metrics,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.APPLICATIONS + '/(.*)')]
   },
-  // {
-  //   title: 'Workloads',
-  //   to: '/' + Paths.WORKLOADS,
-  //   pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
-  // },
+  {
+    title: '服务流量注入工具',
+    to: '/' + Paths.Traffic,
+    pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
+  },
+  {
+    title: '服务监控指标设置',
+    to: '/' + Paths.MSetup,
+    pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
+  },
+  {
+    title: '全局设置',
+    to: '/' + Paths.GSetup,
+    pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
+  },
   // {
   //   title: 'Services',
   //   to: '/' + Paths.SERVICES,
@@ -120,6 +132,22 @@ const pathRoutes: Path[] = [
   {
     path: '/' + Paths.SERVICES,
     component: ServiceListPage
+  },
+  {
+    path: '/' + Paths.Metrics,
+    component: Metrics
+  },
+  {
+    path: '/' + Paths.Traffic,
+    component: Traffic
+  },
+  {
+    path: '/' + Paths.MSetup,
+    component: Traffic
+  },
+  {
+    path: '/' + Paths.GSetup,
+    component: GSetup
   },
   {
     path: '/' + Paths.APPLICATIONS,

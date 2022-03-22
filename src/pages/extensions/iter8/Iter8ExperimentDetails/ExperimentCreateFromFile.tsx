@@ -10,7 +10,7 @@ import {
   FormGroup,
   Grid,
   GridItem,
-  InputGroup,
+  // InputGroup,
   Text
 } from '@patternfly/react-core';
 import history from '../../../../app/History';
@@ -23,7 +23,7 @@ import { style } from 'typestyle';
 import { jsYaml, parseYamlValidations } from '../../../../types/AceValidations';
 import AceEditor from 'react-ace';
 import { aceOptions } from '../../../../types/IstioConfigDetails';
-import { TextInputBase as TextInput } from '@patternfly/react-core/dist/js/components/TextInput/TextInput';
+// import { TextInputBase as TextInput } from '@patternfly/react-core/dist/js/components/TextInput/TextInput';
 import { PFColors } from '../../../../components/Pf/PfColors';
 import DefaultSecondaryMasthead from '../../../../components/DefaultSecondaryMasthead/DefaultSecondaryMasthead';
 
@@ -188,10 +188,13 @@ class ExperimentCreateFromFile extends React.Component<Props, State> {
         <Grid style={{ margin: '10px' }} gutter={'md'}>
           <GridItem span={12}>
             <Form isHorizontal={true} className={containerPadding}>
-              <FormGroup fieldId="title" label="Load from Local" isRequired={true}>
+              <FormGroup fieldId="title" label="本地导入配置文件" isRequired={true}>
                 <FileUpload
                   id="text-file-with-edits-allowed"
                   type="text"
+                  filenamePlaceholder="将配置文件拖至此处或从本地上传"
+                  browseButtonText="本地上传"
+                  clearButtonText="清空文件"
                   value={experimentYaml}
                   filename={filename}
                   onChange={this.handleFileChange}
@@ -203,7 +206,7 @@ class ExperimentCreateFromFile extends React.Component<Props, State> {
                 />
               </FormGroup>
 
-              <FormGroup
+              {/* <FormGroup
                 fieldId="title"
                 label="Load from Github"
                 isRequired={true}
@@ -241,15 +244,15 @@ class ExperimentCreateFromFile extends React.Component<Props, State> {
                     Clear
                   </Button>
                 </InputGroup>
-              </FormGroup>
+              </FormGroup> */}
             </Form>
           </GridItem>
-          <GridItem span={2}></GridItem>
+          <GridItem span={1}></GridItem>
           <GridItem span={7}>
             {this.props.activeNamespaces.length === 1 ? (
-              <Text>Experiment will be created at namespace: {namespacesToString(this.props.activeNamespaces)}</Text>
+              <Text>实验将创建在{namespacesToString(this.props.activeNamespaces)}命名空间下</Text>
             ) : (
-              <Text style={{ color: PFColors.Red100 }}>namespace missing</Text>
+              <Text style={{ color: PFColors.Red100 }}>未选择命名空间！</Text>
             )}
           </GridItem>
           <GridItem span={3}>
@@ -268,7 +271,7 @@ class ExperimentCreateFromFile extends React.Component<Props, State> {
                     isDisabled={!this.isFormValid()}
                     onClick={() => this.createExperiment()}
                   >
-                    Create
+                    创建
                   </Button>
                 </span>
                 <span style={{ float: 'right', paddingRight: '5px' }}>
@@ -278,7 +281,7 @@ class ExperimentCreateFromFile extends React.Component<Props, State> {
                       this.goExperimentsPage();
                     }}
                   >
-                    Cancel
+                    取消
                   </Button>
                 </span>
               </span>

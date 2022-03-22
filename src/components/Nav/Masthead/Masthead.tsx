@@ -4,12 +4,12 @@ import { Label, Toolbar as ToolbarNext, ToolbarGroup, ToolbarItem, Tooltip } fro
 import { ClusterIcon } from '@patternfly/react-icons';
 
 import { serverConfig } from '../../../config';
-import { default as MeshMTLSStatus } from '../../../components/MTls/MeshMTLSStatus';
+// import { default as MeshMTLSStatus } from '../../../components/MTls/MeshMTLSStatus';
 import { default as IstioStatus } from '../../IstioStatus/IstioStatus';
 import PfSpinner from '../../PfSpinner';
-import UserDropdown from './UserDropdown';
+// import UserDropdown from './UserDropdown';
 // import HelpDropdown from './HelpDropdown';
-import MessageCenterTriggerContainer from '../../../components/MessageCenter/MessageCenterTrigger';
+// import MessageCenterTriggerContainer from '../../../components/MessageCenter/MessageCenterTrigger';
 
 const leftGroup = style({
   position: 'absolute',
@@ -43,18 +43,18 @@ class Masthead extends React.Component {
           <ToolbarItem>
             <IstioStatus />
           </ToolbarItem>
-          <ToolbarItem>
+          {/* <ToolbarItem>
             <MeshMTLSStatus />
-          </ToolbarItem>
-          <ToolbarItem>
+          </ToolbarItem> */}
+          {/* <ToolbarItem>
             <MessageCenterTriggerContainer />
-          </ToolbarItem>
+          </ToolbarItem> */}
           {/* <ToolbarItem>
             <HelpDropdown />
           </ToolbarItem> */}
-          <ToolbarItem>
+          {/* <ToolbarItem>
             <UserDropdown />
-          </ToolbarItem>
+          </ToolbarItem> */}
         </ToolbarGroup>
       </ToolbarNext>
     );

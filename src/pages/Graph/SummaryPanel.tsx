@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { style } from 'typestyle';
 import { SummaryPanelPropType, BoxByType } from '../../types/Graph';
 import SummaryPanelEdge from './SummaryPanelEdge';
-import SummaryPanelGraph from './SummaryPanelGraph';
+// import SummaryPanelGraph from './SummaryPanelGraph';
 import SummaryPanelAppBox from './SummaryPanelAppBox';
 import { KialiIcon } from 'config/KialiIcon';
 import SummaryPanelNodeContainer from './SummaryPanelNode';
@@ -146,7 +146,7 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
               />
             )}
             {summaryType === 'edge' && <SummaryPanelEdge {...this.props} />}
-            {summaryType === 'graph' && (
+            {/* {summaryType === 'graph' && (
               <SummaryPanelGraph
                 data={this.props.data}
                 duration={this.props.duration}
@@ -158,7 +158,7 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
                 step={this.props.step}
                 trafficRates={this.props.trafficRates}
               />
-            )}
+            )} */}
             {this.props.data.summaryType === 'node' && (
               <SummaryPanelNodeContainer
                 data={this.props.data}

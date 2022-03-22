@@ -17,27 +17,27 @@ import { OnRemoveFromListOptions } from './ExperimentCreatePage';
 
 const headerCells: ICell[] = [
   {
-    title: 'Metric Name',
+    title: '指标名称',
     transforms: [cellWidth(30) as any],
     props: {}
   },
   {
-    title: 'Threshold',
+    title: '指标阈值',
     transforms: [wrappable, cellWidth(10) as any],
     props: {}
   },
   {
-    title: 'Threshold Type',
+    title: '指标类型',
     transforms: [wrappable, cellWidth(15) as any],
     props: {}
   },
   {
-    title: 'Stop on Failure',
+    title: '出错时停止',
     transforms: [wrappable],
     props: {}
   },
   {
-    title: 'Reward',
+    title: '设置为奖励指标',
     transforms: [wrappable],
     props: {}
   },
@@ -50,11 +50,11 @@ const headerCells: ICell[] = [
 const toleranceType: NameValuePair[] = [
   {
     name: 'absolute',
-    value: 'absolute'
+    value: '绝对度量'
   },
   {
     name: 'relative',
-    value: 'relative'
+    value: '相对度量'
   }
 ];
 
@@ -91,7 +91,7 @@ class ExperimentCriteriaForm extends React.Component<Props, State> {
   // @ts-ignore
   actionResolver = (rowData, { rowIndex }) => {
     const removeAction = {
-      title: 'Remove Criteria',
+      title: '删除指标',
       onClick: (_, rowIndex) => {
         this.props.onRemove(OnRemoveFromListOptions.Criteria, rowIndex);
       }
@@ -228,7 +228,7 @@ class ExperimentCriteriaForm extends React.Component<Props, State> {
               </>,
               <>
                 <Checkbox
-                  label="YES"
+                  label="是（默认为否）"
                   id="stopOnFailure"
                   name="stopOnFailure"
                   aria-label="Stop On Failure"
@@ -238,7 +238,7 @@ class ExperimentCriteriaForm extends React.Component<Props, State> {
               </>,
               <>
                 <Checkbox
-                  label="YES"
+                  label="是（默认为否）"
                   id="isReward"
                   name="isReward"
                   aria-label="Reward"
@@ -253,7 +253,7 @@ class ExperimentCriteriaForm extends React.Component<Props, State> {
                   isDisabled={this.state.addCriteria.metric.length === 0}
                   onClick={this.onAddCriteria}
                 >
-                  Add this Criteria
+                  添加指标
                 </Button>
               </>
             ]

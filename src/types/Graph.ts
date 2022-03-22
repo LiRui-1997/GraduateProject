@@ -153,8 +153,8 @@ export const toTcpRate = (rate: string): TrafficRate | undefined => {
 };
 
 export enum GraphType {
-  APP = '应用',
-  SERVICE = '服务',
+  APP = 'app',
+  SERVICE = 'service',
   VERSIONED_APP = 'versionedApp',
   WORKLOAD = 'workload'
 }

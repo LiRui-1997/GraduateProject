@@ -6,7 +6,7 @@ import {
   EmptyStateVariant,
   Grid,
   GridItem,
-  PopoverPosition,
+  // PopoverPosition,
   Title,
   Tooltip
 } from '@patternfly/react-core';
@@ -61,9 +61,9 @@ const statusIconStyle = style({
   fontSize: '2.0em'
 });
 
-const infoStyle = style({
-  margin: '0px 16px 2px 4px'
-});
+// const infoStyle = style({
+//   margin: '0px 16px 2px 4px'
+// });
 
 class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescriptionProps, State> {
   constructor(props: AssesmentInfoDescriptionProps) {
@@ -71,9 +71,9 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
     this.state = {
       experimentItem: emptyExperimentItem,
       columns: [
-        { title: 'Type', cellFormatters: [expandable], transforms: [cellWidth(10) as any] },
-        'Assessment',
-        'Statistics'
+        { title: '目标服务', cellFormatters: [expandable], transforms: [cellWidth(10) as any] },
+        '当前评估结果',
+        '性能指标及监控数据'
       ],
       rows: this.getRows()
     };
@@ -187,27 +187,27 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
 
     let lowerCredible =
       statistics.ratio_statistics?.credible_interval.upper != null
-        ? [{ name: 'Credible Lower Range', y: statistics.ratio_statistics.credible_interval.lower }]
+        ? [{ name: '有效监控数据最低值', y: statistics.ratio_statistics.credible_interval.lower }]
         : [];
     let higherCredible =
       statistics.ratio_statistics?.credible_interval.upper != null
-        ? [{ name: 'Credible Upper Range', y: statistics.ratio_statistics.credible_interval.upper }]
+        ? [{ name: '有效监控数据最高值', y: statistics.ratio_statistics.credible_interval.upper }]
         : [];
     let dataLegend =
       statistics.ratio_statistics?.credible_interval.upper != null
         ? [
-            { name: 'Credible Lower Range', symbol: { type: 'minus' } },
-            { name: 'Credible Higher Range', symbol: { type: 'minus' } },
-            { name: 'Exception' },
-            { name: 'Threshold' },
-            { name: 'Measurement inside threshold' },
-            { name: 'Measurement outside threshold' }
+            { name: '有效监控数据最低值', symbol: { type: 'minus' } },
+            { name: '有效监控数据最高值', symbol: { type: 'minus' } },
+            { name: '无效数据' },
+            { name: '指标门限值' },
+            { name: '门限值以内的监控数据' },
+            { name: '门限值之外的监控数据' }
           ]
         : [
-            { name: 'Exception' },
-            { name: 'Threshold' },
-            { name: 'Measurement inside threshold' },
-            { name: 'Measurement outside threshold' }
+            { name: '无效数据' },
+            { name: '指标门限值' },
+            { name: '门限值以内的监控数据' },
+            { name: '门限值之外的监控数据' }
           ];
     let colorScale =
       statistics.ratio_statistics?.credible_interval.upper != null
@@ -246,10 +246,11 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
               <>
                 <ChartLegend
                   data={dataLegend}
-                  style={{ labels: { fontSize: 12 } }}
+                  style={{ labels: { fontSize: 10 } }}
                   colorScale={colorScale}
                   itemsPerRow={2}
                   height={legendHeight}
+                  gutter={100}
                 />
               </>
             ) : (
@@ -272,8 +273,8 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
               this.props.experimentItem?.winner.name === assessment.name ? (
                 <Grid gutter="md">
                   <GridItem span={6}>
-                    Winner
-                    <Tooltip
+                    获胜版本
+                    {/* <Tooltip
                       key={'winnerTooltip'}
                       aria-label={'Winner Tooltip'}
                       position={PopoverPosition.auto}
@@ -281,7 +282,7 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
                       content={<>{'Winning version identified by iter8 analytics'}</>}
                     >
                       <KialiIcon.Info className={infoStyle} />
-                    </Tooltip>
+                    </Tooltip> */}
                   </GridItem>
                   <GridItem span={6}>
                     {' '}
@@ -292,19 +293,19 @@ class AssessmentInfoDescriptionTab extends React.Component<AssesmentInfoDescript
                 <></>
               )}
               <Grid gutter="md">
-                <GridItem span={6}>Name:</GridItem>
+                <GridItem span={6}>服务名称:</GridItem>
                 <GridItem span={6}>{assessment.name}</GridItem>
               </Grid>
               <Grid gutter="md">
-                <GridItem span={6}>Weight:</GridItem>
+                <GridItem span={6}>流量占比:</GridItem>
                 <GridItem span={6}>{assessment.weight}</GridItem>
               </Grid>
               <Grid gutter="md">
-                <GridItem span={6}>Win Probability:</GridItem>
+                <GridItem span={6}>获胜概率:</GridItem>
                 <GridItem span={6}>{assessment.winProbability}</GridItem>
               </Grid>
               <Grid gutter="md">
-                <GridItem span={6}>Request Count:</GridItem>
+                <GridItem span={6}>服务请求数量:</GridItem>
                 <GridItem span={6}>{assessment.requestCount}</GridItem>
               </Grid>
             </>

@@ -12,7 +12,9 @@ const titles = [
   'workloads',
   'extensions/iter8',
   'extensions/iter8/new',
-  'extensions/iter8/newfromfile'
+  'extensions/iter8/newfromfile',
+  'traffic',
+  'global-setup'
 ];
 
 type Props = {
@@ -50,6 +52,10 @@ export default class DefaultSecondaryMasthead extends React.Component<Props> {
         // 'istio/new/'.length() == 10
         const objectType = path.substring(10);
         title = 'Create ' + objectType;
+      } else if (path === 'traffic') {
+        title = '服务流量注入工具';
+      } else if (path === 'global-setup') {
+        title = '全局设置';
       } else if (path === 'istio') {
         title = '服务网格资源配置';
       } else if (path === 'extensions/iter8') {

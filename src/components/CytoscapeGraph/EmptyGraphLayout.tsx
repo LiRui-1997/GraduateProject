@@ -51,7 +51,7 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
       if (this.props.namespaces.length === 1) {
         return (
           <>
-            namespace <b>{this.props.namespaces[0].name}</b>
+            <b>{this.props.namespaces[0].name}</b>
           </>
         );
       } else {
@@ -64,7 +64,7 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
           this.props.namespaces[this.props.namespaces.length - 1].name;
         return (
           <>
-            namespaces <b>{namespacesString}</b>
+            <b>{namespacesString}</b>
           </>
         );
       }
@@ -78,7 +78,7 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
         <EmptyState variant={EmptyStateVariant.large} className={emptyStateStyle}>
           <EmptyStateIcon icon={KialiIcon.Error} />
           <Title headingLevel="h5" size="lg">
-            Error loading Graph
+            生成服务网格流量图出错
           </Title>
           <EmptyStateBody>{this.props.error}</EmptyStateBody>
         </EmptyState>
@@ -88,7 +88,7 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
       return (
         <EmptyState variant={EmptyStateVariant.large} className={emptyStateStyle}>
           <Title headingLevel="h5" size="lg">
-            Loading Graph
+            服务网格流量图加载中...
           </Title>
         </EmptyState>
       );
@@ -98,10 +98,10 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
       return (
         <EmptyState variant={EmptyStateVariant.large} className={emptyStateStyle}>
           <Title headingLevel="h5" size="lg">
-            No namespace is selected
+            未选择命名空间
           </Title>
           <EmptyStateBody>
-            There is currently no namespace selected, please select one using the Namespace selector.
+            请选择要展示服务网格流量图的命名空间
           </EmptyStateBody>
         </EmptyState>
       );
@@ -113,21 +113,20 @@ export default class EmptyGraphLayout extends React.Component<EmptyGraphLayoutPr
       return (
         <EmptyState variant={EmptyStateVariant.large} className={emptyStateStyle}>
           <Title headingLevel="h5" size="lg">
-            Empty Graph
+            未能生成服务网格流量图
           </Title>
           <EmptyStateBody>
-            There is currently no graph available for {this.namespacesText()}. This could either mean there is no
-            service mesh available for {this.props.namespaces.length === 1 ? 'this namespace' : 'these namespaces'} or
-            the service mesh has yet to see request traffic.
+            {this.namespacesText()}命名空间下暂时无法生成服务网格流量图，可能是由于{this.props.namespaces.length === 1 ? '此命名空间' : '这些命名空间'}下没有进行相关服务网格配置，
+            或者相关服务还未接收到访问请求。
             {this.props.showIdleNodes && (
               <> You are currently displaying 'Idle nodes', send requests to the service mesh and click 'Refresh'.</>
             )}
             {!this.props.showIdleNodes && (
-              <> You can enable 'Idle Nodes' to display service mesh nodes that have yet to see any request traffic.</>
+              <> 可以点击下方按钮展示此命名空间下的服务</>
             )}
           </EmptyStateBody>
           <Button onClick={this.props.showIdleNodes ? this.props.action : this.props.toggleIdleNodes} variant="primary">
-            {(this.props.showIdleNodes && <>Refresh</>) || <>Display idle nodes</>}
+            {(this.props.showIdleNodes && <>Refresh</>) || <>服务详情</>}
           </Button>
         </EmptyState>
       );

@@ -66,7 +66,7 @@ export default class GraphSecondaryMasthead extends React.PureComponent<GraphSec
             <span className={leftSpacerStyle}>
               <ToolbarDropdown
                 id={'graph_type_dropdown'}
-                disabled={this.props.disabled}
+                disabled={true}
                 handleSelect={this.setGraphType}
                 value={graphTypeKey}
                 label={GRAPH_TYPES[graphTypeKey]}

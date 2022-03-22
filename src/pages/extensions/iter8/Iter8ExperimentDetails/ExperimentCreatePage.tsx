@@ -15,16 +15,16 @@ import {
   GridItem,
   Popover,
   Switch,
-  Text,
+  // Text,
   TextInputBase as TextInput,
-  TextVariants
+  // TextVariants
 } from '@patternfly/react-core';
 import history from '../../../../app/History';
 import { RenderContent } from '../../../../components/Nav/Page';
 import Namespace from '../../../../types/Namespace';
 import ExperimentCriteriaForm from './ExperimentCriteriaForm';
 import ExperimentHostForm, { HostState, initHost } from './ExperimentHostForm';
-import ExperimentTrafficForm from './ExperimentTrafficForm';
+// import ExperimentTrafficForm from './ExperimentTrafficForm';
 import { PromisesRegistry } from '../../../../utils/CancelablePromises';
 import { KialiAppState } from '../../../../store/Store';
 import { activeNamespacesSelector } from '../../../../store/Selectors';
@@ -81,8 +81,8 @@ const algorithms = ['progressive', 'top_2', 'uniform'];
 const onTermination = ['to_winner', 'to_baseline', 'keep_last'];
 
 const iter8oExpOptions = [
-  { value: 'Deployment', label: 'WORKLOAD' },
-  { value: 'Service', label: 'SERVICE' }
+  { value: 'Deployment', label: 'Deployment' },
+  { value: 'Service', label: 'Service' }
 ];
 
 class ExperimentCreatePage extends React.Component<Props, State> {
@@ -191,7 +191,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
     this.promises
       .register('iter8Metrics', API.getIter8Metrics())
       .then(mresponse => {
-        let metricsNames: string[] = ['-- select one ---'];
+        let metricsNames: string[] = ['-- 请选择 ---'];
         metricsNames = metricsNames.concat(mresponse.data);
         this.setState(prevState => {
           return {
@@ -532,15 +532,15 @@ class ExperimentCreatePage extends React.Component<Props, State> {
     return [
       <FormGroup
         fieldId="baseline"
-        label={isDeployment ? 'Deployment Baseline' : 'Service Baseline'}
+        label={isDeployment ? '基准版本' : '基准版本'}
         isRequired={true}
         isValid={this.state.experiment.baseline !== ''}
-        helperText={
-          isDeployment
-            ? 'The baseline deployment of the target service (i.e. reviews-v1)'
-            : 'The baseline service (i.e. reviews)'
-        }
-        helperTextInvalid={isDeployment ? 'Baseline deployment cannot be empty' : 'Baseline service cannot be empty'}
+        // helperText={
+        //   isDeployment
+        //     ? 'The baseline deployment of the target service (i.e. reviews-v1)'
+        //     : 'The baseline service (i.e. reviews)'
+        // }
+        helperTextInvalid={isDeployment ? '基准版本不能为空！' : '基准版本不能为空！'}
       >
         <FormSelect
           id="baseline"
@@ -562,20 +562,20 @@ class ExperimentCreatePage extends React.Component<Props, State> {
     return [
       <FormGroup
         fieldId="candidates"
-        label={isDeployment ? 'Deployment Candidate(s)' : 'Service Candidate(s)'}
+        label={isDeployment ? '候选版本' : '候选版本'}
         isRequired={true}
         isValid={this.state.experiment.candidates.length !== 0}
-        helperText={
-          isDeployment
-            ? 'Name or a List of names of candidate deployment of the target service (i.e. reviews-v2, or reviews-v2,reviews-v3)'
-            : 'Name or a List of names of candidate service (i.e. reviews)'
-        }
-        helperTextInvalid={isDeployment ? 'Candidate deployment cannot be empty' : 'Candidate service cannot be empty'}
+        // helperText={
+        //   isDeployment
+        //     ? 'Name or a List of names of candidate deployment of the target service (i.e. reviews-v2, or reviews-v2,reviews-v3)'
+        //     : 'Name or a List of names of candidate service (i.e. reviews)'
+        // }
+        helperTextInvalid={isDeployment ? '候选版本不能为空！' : '候选版本不能为空！'}
       >
         <TextInput
           id="candidate"
           value={this.state.experiment.candidates.join(',')}
-          placeholder="Select from list or enter a new one"
+          placeholder="从列表中选择获胜自定义输入"
           onChange={value => this.changeExperiment('candidate', value)}
           list={'candidateName'}
           autoComplete={'off'}
@@ -602,23 +602,23 @@ class ExperimentCreatePage extends React.Component<Props, State> {
       <>
         <FormGroup
           fieldId="name"
-          label="Experiment Name"
+          label="实验名称"
           isRequired={true}
           isValid={this.state.experiment.name !== '' && this.state.experiment.name.search(regex) === 0}
-          helperTextInvalid="Name cannot be empty and must be a DNS subdomain name as defined in RFC 1123."
+          helperTextInvalid="实验名称不能为空！"
         >
           <TextInput
             id="name"
             value={this.state.experiment.name}
-            placeholder="Experiment Name"
+            placeholder="请输入实验名称"
             onChange={value => this.changeExperiment('name', value)}
           />
         </FormGroup>
         <FormGroup
           fieldId="experimentKind"
-          label="Kind of Target"
+          label="目标类型"
           isRequired={true}
-          helperTextInvalid="Kind of experiment target"
+          helperTextInvalid="实验目标为Deployment或者Service"
         >
           <FormSelect
             value={this.state.experiment.experimentKind}
@@ -634,10 +634,10 @@ class ExperimentCreatePage extends React.Component<Props, State> {
         {history.location.pathname.endsWith('/new') ? (
           <>
             <FormGroup
-              label="Namespaces"
+              label="命名空间"
               isRequired={true}
               fieldId="namespaces"
-              helperText={'Select namespace where this configuration will be applied'}
+              // helperText={'指定实验所在的命名空间'}
               isValid={isNamespacesValid}
             >
               <FormSelect
@@ -660,11 +660,11 @@ class ExperimentCreatePage extends React.Component<Props, State> {
               <>
                 <FormGroup
                   fieldId="service"
-                  label="Target Service"
+                  label="目标服务"
                   isRequired={true}
                   isValid={this.state.experiment.service !== ''}
-                  helperText="Target Service specifies the reference to experiment targets (i.e. reviews)"
-                  helperTextInvalid="Target Service cannot be empty"
+                  // helperText="Target Service specifies the reference to experiment targets (i.e. reviews)"
+                  helperTextInvalid="目标服务不能为空！"
                 >
                   <FormSelect
                     id="service"
@@ -734,15 +734,15 @@ class ExperimentCreatePage extends React.Component<Props, State> {
           <GridItem span={6}>
             <FormGroup
               fieldId="interval"
-              label="Interval (seconds)"
+              label="实验间隔（单位: 秒）"
               isValid={this.state.experiment.duration.interval !== ''}
-              helperText="Frequency with which the controller calls the analytics service"
-              helperTextInvalid="Interval cannot be empty"
+              // helperText="Frequency with which the controller calls the analytics service"
+              helperTextInvalid="实验间隔不能为空！"
             >
               <TextInput
                 id="interval"
                 value={this.state.experiment.duration.intervalInSecond}
-                placeholder="Time interval i.e. 30s"
+                placeholder="请输入时间间隔"
                 onChange={value => this.changeExperimentNumber('interval', Number(value))}
               />
             </FormGroup>
@@ -750,16 +750,16 @@ class ExperimentCreatePage extends React.Component<Props, State> {
           <GridItem span={6}>
             <FormGroup
               fieldId="maxIteration"
-              label="Maximum Iteration"
+              label="最大实验轮次"
               isValid={this.state.experiment.duration.maxIterations > 0}
-              helperText="Maximum number of iterations for this experiment"
-              helperTextInvalid="Maximun Iteration cannot be empty"
+              // helperText="Maximum number of iterations for this experiment"
+              helperTextInvalid="最大实验轮次不能为空！"
             >
               <TextInput
                 id="maxIteration"
                 type="number"
                 value={this.state.experiment.duration.maxIterations}
-                placeholder="Maximum Iteration"
+                placeholder="请输入最大实验轮次数"
                 onChange={value => this.changeExperimentNumber('maxIteration', Number(value))}
               />
             </FormGroup>
@@ -776,8 +776,8 @@ class ExperimentCreatePage extends React.Component<Props, State> {
           <GridItem span={6}>
             <FormGroup
               fieldId="algorithm"
-              label="Algorithm"
-              helperText="Strategy used to analyze the candidate and shift the traffic"
+              label="流量控制算法"
+              // helperText="Strategy used to analyze the candidate and shift the traffic"
             >
               <FormSelect
                 value={this.state.experiment.trafficControl.strategy}
@@ -794,8 +794,8 @@ class ExperimentCreatePage extends React.Component<Props, State> {
           <GridItem span={6}>
             <FormGroup
               fieldId="onTermination"
-              label="onTermination"
-              helperText="The traffic split behavior after the termination of the experiment."
+              label="实验结束后执行"
+              // helperText="The traffic split behavior after the termination of the experiment."
             >
               <FormSelect
                 value={this.state.experiment.trafficControl.onTermination}
@@ -814,10 +814,10 @@ class ExperimentCreatePage extends React.Component<Props, State> {
             <FormGroup
               style={this.state.showMaxIncrement ? {} : { display: 'none' }}
               fieldId="maxIncrement"
-              label="Max Increment"
+              label="单次实验最大流量增量"
               isValid={this.state.experiment.trafficControl.maxIncrement > 0}
-              helperText="Maximum possible increase in traffic for a candidate in a single iteration (measured in percent). Default value: 2 (percent)"
-              helperTextInvalid="Max Increment must be > 0"
+              // helperText="Maximum possible increase in traffic for a candidate in a single iteration (measured in percent). Default value: 2 (percent)"
+              helperTextInvalid="不可小于0！"
             >
               <TextInput
                 id="maxIncrement"
@@ -827,7 +827,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
               />
             </FormGroup>
           </GridItem>
-          <GridItem span={12}>
+          {/* <GridItem span={12}>
             <Text component={TextVariants.a}>
               Number of Match Rules: {this.state.experiment.trafficControl.match.http.length}
               <Popover
@@ -855,15 +855,15 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                 </Button>
               </Popover>
             </Text>
-          </GridItem>
-          <GridItem span={12}>
+          </GridItem> */}
+          {/* <GridItem span={12}>
             <ExperimentTrafficForm
               matches={this.state.experiment.trafficControl.match.http}
               onRemove={this.onRemoveFromList}
               onAdd={this.onAddToList}
               onMoveMatchRule={this.onMoveMatchRule}
             />
-          </GridItem>
+          </GridItem> */}
         </Grid>
       </>
     );
@@ -916,7 +916,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
   renderCriteria() {
     return (
       <>
-        Assessment Criteria:
+        【设置性能评估指标】
         <ExperimentCriteriaForm
           iter8Info={this.state.iter8Info}
           criterias={this.state.experiment.criterias}
@@ -966,7 +966,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
       <>
         {this.renderCriteria()}
         <Form>
-          <FormGroup label="Show Duration" fieldId="showDuration">
+          <FormGroup label="设置实验周期" fieldId="showDuration">
             <Switch
               id="showDuration"
               label={' '}
@@ -976,11 +976,11 @@ class ExperimentCreatePage extends React.Component<Props, State> {
             />
           </FormGroup>
           {this.state.showDurationControl && (
-            <FormGroup label="Experiment Duration" fieldId="drationControall">
+            <FormGroup label="实验周期" fieldId="drationControall">
               {this.renderDuration()}
             </FormGroup>
           )}
-          <FormGroup label="Show Traffic Control" fieldId="showTrafficControl">
+          <FormGroup label="流量控制选项" fieldId="showTrafficControl">
             <Switch
               id="showTrafficControl"
               label={' '}
@@ -999,14 +999,13 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                     position={'right'}
                     hideOnOutsideClick={true}
                     maxWidth={'40rem'}
-                    headerContent={<div>Traffic Control</div>}
+                    headerContent={<div>流量控制</div>}
                     bodyContent={
                       <div>
                         <p>
-                          Configuration that affect how application traffic is split across different versions of the
-                          service during and after the experiment.
+                          设置实验运行过程中的全局流量控制条件
                         </p>{' '}
-                        <b>Traffic Control Strategies:</b> (reference{' '}
+                        {/* <b>Traffic Control Strategies:</b> (reference{' '}
                         <a
                           href="https://iter8.tools/reference/algorithms/#traffic-control-strategies"
                           target="_blank"
@@ -1049,12 +1048,12 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                               even after the experiment has terminated
                             </td>
                           </tr>
-                        </table>
+                        </table> */}
                       </div>
                     }
                   >
                     <Button variant="link">
-                      Traffic Control <InfoAltIcon noVerticalAlign />
+                      流量控制 <InfoAltIcon noVerticalAlign />
                     </Button>
                   </Popover>
                 }
@@ -1063,7 +1062,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
               </FormGroup>
             </>
           )}
-          <FormGroup label="Show Networking Control" fieldId="addHostGateway">
+          {/* <FormGroup label="Show Networking Control" fieldId="addHostGateway">
             <Switch
               id="addHostGateway"
               label={' '}
@@ -1076,7 +1075,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
             <FormGroup label="Networking" fieldId="hostsGateways">
               {this.renderHost()}
             </FormGroup>
-          )}
+          )} */}
         </Form>
       </>
     );
@@ -1133,7 +1132,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                       isDisabled={!isFormValid}
                       onClick={() => this.createExperiment()}
                     >
-                      Create
+                      创建
                     </Button>
                   </span>
                   <span style={{ float: 'right', paddingRight: '5px' }}>
@@ -1143,7 +1142,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                         this.goExperimentsPage();
                       }}
                     >
-                      Cancel
+                      取消
                     </Button>
                   </span>
                 </span>

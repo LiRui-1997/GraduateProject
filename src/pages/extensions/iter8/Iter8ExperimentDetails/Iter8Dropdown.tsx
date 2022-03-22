@@ -44,7 +44,7 @@ type State = {
   warning: string;
 };
 
-const ITER8_ACTIONS = ['Pause', 'Resume', 'Terminate'];
+// const ITER8_ACTIONS = ['暂停', '恢复', '终止'];
 
 class Iter8Dropdown extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -240,11 +240,11 @@ class Iter8Dropdown extends React.Component<Props, State> {
           onClick={() => this.actionConfirmModal('Delete', true, false)}
           isDisabled={!this.props.canDelete}
         >
-          Delete
+          删除实验
         </DropdownItem>
       );
     }
-    items = items.concat(ITER8_ACTIONS.map(action => this.renderDropdownItem(action)));
+    // items = items.concat(ITER8_ACTIONS.map(action => this.renderDropdownItem(action)));
     return items;
   };
 
@@ -254,7 +254,7 @@ class Iter8Dropdown extends React.Component<Props, State> {
         <Dropdown
           id="actions"
           title="Actions"
-          toggle={<DropdownToggle onToggle={this.onToggle}>Actions</DropdownToggle>}
+          toggle={<DropdownToggle onToggle={this.onToggle}>操作选项</DropdownToggle>}
           onSelect={this.onSelect}
           position={DropdownPosition.right}
           isOpen={this.state.dropdownOpen}

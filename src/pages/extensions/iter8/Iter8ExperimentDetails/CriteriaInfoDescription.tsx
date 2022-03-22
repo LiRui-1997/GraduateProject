@@ -30,13 +30,13 @@ class CriteriaInfoDescription extends React.Component<ExperimentInfoDescriptionP
       criteriaExpanded: [],
       columns: [
         {
-          title: 'Metric Name'
+          title: '指标名称'
         },
-        'Threshold Type:',
-        'Threshold ',
-        'Is Reward',
-        'Stop On Failure',
-        'Preferred Direction'
+        '指标类型',
+        '指标门限值 ',
+        '是否为奖励指标',
+        '出错时停止',
+        '指标偏好'
       ],
       rows: this.getRows()
     };
@@ -48,14 +48,14 @@ class CriteriaInfoDescription extends React.Component<ExperimentInfoDescriptionP
       const crows: IRow[] = [
         {
           cells: [
-            { title: <>{'Numerator'}</> },
+            { title: <>{'指标计算分子'}</> },
             { title: <>{criteria.metric.numerator.name}</> },
             { title: <>{criteria.metric.numerator.query_template}</> }
           ]
         },
         {
           cells: [
-            { title: <>{'Denominator'}</> },
+            { title: <>{'指标计算分母'}</> },
             { title: <>{criteria.metric.denominator.name}</> },
             { title: <>{criteria.metric.denominator.query_template}</> }
           ]
@@ -67,8 +67,8 @@ class CriteriaInfoDescription extends React.Component<ExperimentInfoDescriptionP
           { title: <>{criteria.name}</> },
           { title: <>{criteria.criteria.toleranceType}</> },
           { title: <>{criteria.criteria.tolerance}</> },
-          { title: <>{criteria.criteria.isReward ? 'YES' : '-'}</> },
-          { title: <>{criteria.criteria.stopOnFailure ? 'True' : 'False'}</> },
+          { title: <>{criteria.criteria.isReward ? '是' : '-'}</> },
+          { title: <>{criteria.criteria.stopOnFailure ? '是' : '否'}</> },
           { title: <>{criteria.metric.preferred_direction}</> }
         ]
       });
@@ -91,9 +91,9 @@ class CriteriaInfoDescription extends React.Component<ExperimentInfoDescriptionP
 
   columns = (): ICell[] => {
     return [
-      { title: 'Type', transforms: [cellWidth(15) as any] },
-      { title: 'Name', transforms: [cellWidth(15) as any] },
-      { title: 'Template' }
+      { title: '计算类型', transforms: [cellWidth(15) as any] },
+      { title: '指标名称', transforms: [cellWidth(15) as any] },
+      { title: '监控模板' }
     ];
   };
 
@@ -184,9 +184,9 @@ class CriteriaInfoDescription extends React.Component<ExperimentInfoDescriptionP
                   <td colSpan={columns.length}>
                     <EmptyState variant={EmptyStateVariant.full}>
                       <Title headingLevel="h5" size="lg">
-                        No Criteria found
+                        未获取到相关性能指标
                       </Title>
-                      <EmptyStateBody>Experiment has not been started</EmptyStateBody>
+                      <EmptyStateBody>实验还未开始</EmptyStateBody>
                     </EmptyState>
                   </td>
                 </tr>

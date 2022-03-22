@@ -117,7 +117,7 @@ export default class SummaryPanelGraph extends React.Component<SummaryPanelPropT
     minWidth: '25em',
     overflowY: 'auto' as 'auto',
     backgroundColor: PFColors.White,
-    width: '25em'
+    width: '25em',
   };
 
   private graphTraffic?: SummaryPanelGraphTraffic;
@@ -167,7 +167,10 @@ export default class SummaryPanelGraph extends React.Component<SummaryPanelPropT
 
   render() {
     const cy = this.props.data.summaryTarget;
-    if (!cy) {
+    // if (!cy) {
+    //   return null;
+    // }
+    if (cy) {
       return null;
     }
 

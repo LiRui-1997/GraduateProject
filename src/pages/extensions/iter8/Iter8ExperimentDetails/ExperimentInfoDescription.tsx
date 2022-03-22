@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   Card,
-  CardActions,
+  // CardActions,
   CardBody,
   CardHead,
   CardHeader,
@@ -10,14 +10,14 @@ import {
   DataListItem,
   DataListItemCells,
   DataListItemRow,
-  Dropdown,
-  DropdownItem,
+  // Dropdown,
+  // DropdownItem,
   Grid,
   GridItem,
-  KebabToggle,
+  // KebabToggle,
   List,
   ListItem,
-  PopoverPosition,
+  // PopoverPosition,
   Stack,
   StackItem,
   Tab,
@@ -25,7 +25,7 @@ import {
   Text,
   TextVariants,
   Title,
-  Tooltip
+  // Tooltip
 } from '@patternfly/react-core';
 
 import LocalTime from '../../../../components/Time/LocalTime';
@@ -33,12 +33,12 @@ import * as API from '../../../../services/Api';
 import { Link } from 'react-router-dom';
 import { Iter8ExpDetailsInfo } from '../../../../types/Iter8';
 import { RenderComponentScroll } from '../../../../components/Nav/Page';
-import { GraphType } from '../../../../types/Graph';
-import history from '../../../../app/History';
+// import { GraphType } from '../../../../types/Graph';
+// import history from '../../../../app/History';
 import jsyaml from 'js-yaml';
 import YAML from 'yaml';
-import { KialiIcon } from '../../../../config/KialiIcon';
-import { style } from 'typestyle';
+// import { KialiIcon } from '../../../../config/KialiIcon';
+// import { style } from 'typestyle';
 import equal from 'fast-deep-equal';
 import TrafficControlInfo from './TrafficControlInfo';
 import ErrorBoundaryWithMessage from '../../../../components/ErrorBoundary/ErrorBoundaryWithMessage';
@@ -58,9 +58,9 @@ type ExperimentInfoState = {
   isUpdated: boolean;
 };
 
-const infoStyle = style({
-  margin: '0px 16px 2px 4px'
-});
+// const infoStyle = style({
+//   margin: '0px 16px 2px 4px'
+// });
 
 class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptionProps, ExperimentInfoState> {
   constructor(props) {
@@ -82,16 +82,16 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
         <PFBadge badge={{ badge: 'S' }} />
       </DataListCell>,
       <DataListCell key="targetService">
-        <Text component={TextVariants.h3}>Service</Text>
+        <Text component={TextVariants.h3}>目标服务</Text>
       </DataListCell>
     ];
   }
 
-  serviceLinkCell(namespace: string, bname: string) {
+  serviceLinkCell(bname: string) {
     return [
       <DataListCell key={bname}>
         <Text component={TextVariants.h3}>
-          <Link to={this.serviceLink(namespace, bname)}>{bname}</Link>
+          {bname}
         </Text>
       </DataListCell>
     ];
@@ -188,21 +188,21 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
   };
 
   renderCardHead() {
-    const graphCardActions = [
-      <DropdownItem key="viewGraph" onClick={this.showFullMetric}>
-        Show service inbound metrics
-      </DropdownItem>,
-      <DropdownItem key="viewGraph" onClick={this.showFullGraph}>
-        Show traffic graph
-      </DropdownItem>,
-      <DropdownItem key="viewGraph" onClick={this.onDownloadClick}>
-        Download Experiment YAML
-      </DropdownItem>
-    ];
+    // const graphCardActions = [
+    //   <DropdownItem key="viewGraph" onClick={this.showFullMetric}>
+    //     Show service inbound metrics
+    //   </DropdownItem>,
+    //   <DropdownItem key="viewGraph" onClick={this.showFullGraph}>
+    //     Show traffic graph
+    //   </DropdownItem>,
+    //   <DropdownItem key="viewGraph" onClick={this.onDownloadClick}>
+    //     Download Experiment YAML
+    //   </DropdownItem>
+    // ];
 
     return [
       <CardHead>
-        <CardActions>
+        {/* <CardActions>
           <Dropdown
             toggle={<KebabToggle onToggle={this.onGraphActionsToggle} />}
             dropdownItems={graphCardActions}
@@ -210,7 +210,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
             isOpen={this.state.isKebabOpen}
             position={'right'}
           />
-        </CardActions>
+        </CardActions> */}
         <CardHeader>
           <Title style={{ float: 'left' }} headingLevel="h3" size="2xl">
             <PFBadge badge={{ badge: this.props.experimentDetails.experimentType }} />
@@ -231,9 +231,9 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
   }
 
   render() {
-    let targetNamespace = this.props.experimentDetails
-      ? this.props.experimentDetails.experimentItem.targetServiceNamespace
-      : this.props.namespace;
+    // let targetNamespace = this.props.experimentDetails
+    //   ? this.props.experimentDetails.experimentItem.targetServiceNamespace
+    //   : this.props.namespace;
     let targetService = this.props.experimentDetails
       ? this.props.experimentDetails.experimentItem.targetService
       : this.props.target;
@@ -249,10 +249,10 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
         : false
       : false;
     let winnerInfo = '';
-    let additionInfo = '';
+    // let additionInfo = '';
     if (this.props.experimentDetails.experimentItem.status.indexOf('Abort') > 0) {
       winnerInfo = ' (Tentative)';
-      additionInfo = ' at the time of Termination(Abort).';
+      // additionInfo = ' at the time of Termination(Abort).';
     }
     return (
       <>
@@ -269,7 +269,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                           <DataListItem aria-labelledby="target">
                             <DataListItemRow>
                               <DataListItemCells dataListCells={this.serviceInfo()} />
-                              <DataListItemCells dataListCells={this.serviceLinkCell(targetNamespace, targetService)} />
+                              <DataListItemCells dataListCells={this.serviceLinkCell(targetService)} />
                             </DataListItemRow>
                           </DataListItem>
                         ) : (
@@ -280,7 +280,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                           <DataListItemRow>
                             <DataListItemCells
                               dataListCells={this.baselineInfo(
-                                'Baseline',
+                                '基准版本',
                                 this.props.experimentDetails
                                   ? this.props.experimentDetails.experimentItem.baseline.name
                                   : '',
@@ -289,7 +289,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                             />
                             <DataListItemCells
                               dataListCells={this.percentageInfo(
-                                'Baseline',
+                                '候选版本',
                                 this.props.experimentDetails
                                   ? this.props.experimentDetails.experimentItem.baseline.weight
                                   : 0
@@ -349,11 +349,11 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                     <CardBody>
                       <Stack gutter="md" style={{ marginTop: '10px' }}>
                         <StackItem id={'Status'}>
-                          <Text component={TextVariants.h3}> Status: </Text>
+                          <Text component={TextVariants.h3}> 实验状态: </Text>
                           {statusString}
                         </StackItem>
                         <StackItem id={'Status'}>
-                          <Text component={TextVariants.h3}> Phase: </Text>
+                          <Text component={TextVariants.h3}> 当前阶段: </Text>
                           {this.props.experimentDetails ? this.props.experimentDetails.experimentItem.phase : ''}
                         </StackItem>
                         <StackItem id={'Winner'}>
@@ -363,9 +363,9 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                                 <StackItem>
                                   {this.props.experimentDetails.experimentItem.winner.winning_version_found ? (
                                     <>
-                                      <Text component={TextVariants.h3}> Winner Found: {winnerInfo}</Text>
+                                      <Text component={TextVariants.h3}> 获胜版本: {winnerInfo}</Text>
                                       {this.props.experimentDetails.experimentItem.winner.name}
-                                      <Tooltip
+                                      {/* <Tooltip
                                         key={'winnerTooltip'}
                                         aria-label={'Winner Tooltip'}
                                         position={PopoverPosition.auto}
@@ -378,10 +378,10 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                                         }
                                       >
                                         <KialiIcon.Info className={infoStyle} />
-                                      </Tooltip>
+                                      </Tooltip> */}
                                     </>
                                   ) : (
-                                    <Text component={TextVariants.h3}> Winner not Found </Text>
+                                    <Text component={TextVariants.h3}> 未找到获胜版本 </Text>
                                   )}
                                 </StackItem>
                               </GridItem>
@@ -393,8 +393,8 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                                   <Text component={TextVariants.h3}>
                                     {' '}
                                     {this.props.experimentDetails.experimentItem.endTime === ''
-                                      ? 'Current Best Version'
-                                      : 'Winner Version'}{' '}
+                                      ? '当前最佳版本'
+                                      : '获胜版本'}{' '}
                                   </Text>
                                   {this.props.experimentDetails.experimentItem.winner.name}
                                 </StackItem>
@@ -415,7 +415,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                           <Grid>
                             <GridItem span={4}>
                               <StackItem id={'started_at'}>
-                                <Text component={TextVariants.h3}> Created at </Text>
+                                <Text component={TextVariants.h3}> 实验创建时间 </Text>
                                 <LocalTime
                                   time={
                                     this.props.experimentDetails && this.props.experimentDetails.experimentItem.initTime
@@ -427,7 +427,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                             </GridItem>
                             <GridItem span={4}>
                               <StackItem id={'started_at'}>
-                                <Text component={TextVariants.h3}> Started at </Text>
+                                <Text component={TextVariants.h3}> 实验开始时间 </Text>
                                 <LocalTime
                                   time={
                                     this.props.experimentDetails &&
@@ -440,7 +440,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
                             </GridItem>
                             <GridItem span={4}>
                               <StackItem id={'ended_at'}>
-                                <Text component={TextVariants.h3}> Ended at </Text>
+                                <Text component={TextVariants.h3}> 实验结束时间 </Text>
                                 <LocalTime
                                   time={
                                     this.props.experimentDetails && this.props.experimentDetails.experimentItem.endTime
@@ -460,7 +460,7 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
             </GridItem>
             <GridItem span={12}>
               <Tabs isFilled={false} activeKey={0}>
-                <Tab title={'Traffic Control'} eventKey={0} style={{ backgroundColor: PFColors.White }}>
+                <Tab title={'流量控制'} eventKey={0} style={{ backgroundColor: PFColors.White }}>
                   <ErrorBoundaryWithMessage message={'Something went wrong'}>
                     <TrafficControlInfo trafficControl={this.props.experimentDetails.trafficControl} />
                   </ErrorBoundaryWithMessage>
@@ -473,32 +473,32 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
     );
   }
 
-  private onGraphActionsToggle = (isOpen: boolean) => {
-    this.setState({
-      isKebabOpen: isOpen
-    });
-  };
+  // private onGraphActionsToggle = (isOpen: boolean) => {
+  //   this.setState({
+  //     isKebabOpen: isOpen
+  //   });
+  // };
 
-  private showFullGraph = () => {
-    let graphType: GraphType = GraphType.WORKLOAD;
-    const graphUrl = `/graph/namespaces?graphType=${graphType}&injectServiceNodes=true&namespaces=${this.props.namespace}&idleNodes=false&edges=requestsPercentage&`;
-    history.push(graphUrl);
-  };
+  // private showFullGraph = () => {
+  //   let graphType: GraphType = GraphType.WORKLOAD;
+  //   const graphUrl = `/graph/namespaces?graphType=${graphType}&injectServiceNodes=true&namespaces=${this.props.namespace}&idleNodes=false&edges=requestsPercentage&`;
+  //   history.push(graphUrl);
+  // };
 
-  private showFullMetric = () => {
-    const graphUrl = `/namespaces/${this.props.namespace}/services/${this.props.target}?tab=metrics&bylbl=destination_version`;
-    let candidateVersions: string[];
-    candidateVersions = [];
-    this.props.experimentDetails?.experimentItem.candidates.map(can => {
-      candidateVersions.push(can.version);
-    });
-    if (this.props.experimentDetails !== undefined) {
-      const params = `=${this.props.experimentDetails.experimentItem.baseline.version},${candidateVersions.join()}`;
-      history.push(graphUrl + encodeURIComponent(params));
-    } else {
-      history.push(graphUrl);
-    }
-  };
+  // private showFullMetric = () => {
+  //   const graphUrl = `/namespaces/${this.props.namespace}/services/${this.props.target}?tab=metrics&bylbl=destination_version`;
+  //   let candidateVersions: string[];
+  //   candidateVersions = [];
+  //   this.props.experimentDetails?.experimentItem.candidates.map(can => {
+  //     candidateVersions.push(can.version);
+  //   });
+  //   if (this.props.experimentDetails !== undefined) {
+  //     const params = `=${this.props.experimentDetails.experimentItem.baseline.version},${candidateVersions.join()}`;
+  //     history.push(graphUrl + encodeURIComponent(params));
+  //   } else {
+  //     history.push(graphUrl);
+  //   }
+  // };
 }
 
 export default ExperimentInfoDescription;
