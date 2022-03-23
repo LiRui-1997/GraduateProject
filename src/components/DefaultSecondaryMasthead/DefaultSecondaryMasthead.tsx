@@ -54,8 +54,10 @@ export default class DefaultSecondaryMasthead extends React.Component<Props> {
         title = 'Create ' + objectType;
       } else if (path === 'traffic') {
         title = '服务流量注入工具';
-      } else if (path === 'global-setup') {
-        title = '全局设置';
+      } else if (path === 'msetup') {
+        title = '服务性能指标设置';
+      } else if (path === 'repo') {
+        title = '服务部署配置仓库';
       } else if (path === 'istio') {
         title = '服务网格资源配置';
       } else if (path === 'extensions/iter8') {

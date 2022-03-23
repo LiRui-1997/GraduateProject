@@ -18,7 +18,8 @@ import ExperimentCreateFromFileContainer from './pages/extensions/iter8/Iter8Exp
 import MeshPage from 'pages/Mesh/MeshPage';
 import Metrics from './pages/extensions/iter8/metrics/Metrics';
 import Traffic from './pages/extensions/iter8/TrafficInjection/Traffic';
-import GSetup from './pages/extensions/iter8/GlobalSetup/GSetup';
+import MSetup from './pages/extensions/iter8/MSetup/MSetup';
+import Repo from './pages/extensions/iter8/Repo/repo';
 
 /**
  * Return array of objects that describe vertical menu
@@ -57,13 +58,13 @@ const navItems: MenuItem[] = [
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   },
   {
-    title: '服务监控指标设置',
+    title: '服务性能指标设置',
     to: '/' + Paths.MSetup,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   },
   {
-    title: '全局设置',
-    to: '/' + Paths.GSetup,
+    title: '服务部署配置仓库',
+    to: '/' + Paths.Repo,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   },
   // {
@@ -143,11 +144,11 @@ const pathRoutes: Path[] = [
   },
   {
     path: '/' + Paths.MSetup,
-    component: Traffic
+    component: MSetup
   },
   {
-    path: '/' + Paths.GSetup,
-    component: GSetup
+    path: '/' + Paths.Repo,
+    component: Repo
   },
   {
     path: '/' + Paths.APPLICATIONS,

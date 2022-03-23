@@ -14,6 +14,6 @@ export enum Paths {
   WORKLOADS = 'workloads',
   Metrics = 'metrics',
   Traffic = 'traffic',
-  MSetup = 'metric-setup',
-  GSetup = 'global-setup'
+  MSetup = 'msetup',
+  Repo = 'repo'
 }
