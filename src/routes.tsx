@@ -37,7 +37,7 @@ const navItems: MenuItem[] = [
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.ISTIO + '/(.*)'), new RegExp('/' + Paths.ISTIO + '/new/(.*)')]
   },
   {
-    title: '服务网格流量图',
+    title: '服务调用分析',
     to: '/graph/namespaces/',
     pathsActive: [/^\/graph\/(.*)/]
   },
@@ -46,27 +46,26 @@ const navItems: MenuItem[] = [
   //   to: '/overview',
   //   pathsActive: [/^\/overview\/(.*)/]
   // },
-
   {
-    title: '性能指标监控工具',
-    to: '/' + Paths.Metrics,
-    pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.APPLICATIONS + '/(.*)')]
-  },
-  {
-    title: '服务流量注入工具',
+    title: '服务流量注入',
     to: '/' + Paths.Traffic,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   },
   {
-    title: '服务性能指标设置',
+    title: '性能指标监控',
+    to: '/' + Paths.Metrics,
+    pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.APPLICATIONS + '/(.*)')]
+  },
+  {
+    title: '性能指标设置',
     to: '/' + Paths.MSetup,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   },
   {
-    title: '服务部署配置仓库',
+    title: '服务配置仓库',
     to: '/' + Paths.Repo,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
-  },
+  }
   // {
   //   title: 'Services',
   //   to: '/' + Paths.SERVICES,

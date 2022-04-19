@@ -18,7 +18,7 @@ $color-grey-background-border: #ccc;
 // Remove background Image and color by default in header, login and about modal
 .pf-c-page__header {
   background-image: none;
-  background-color: #304156;
+  background-color: #343537;
 }
 
 .pf-c-about-modal-box__hero {
@@ -29,7 +29,7 @@ $color-grey-background-border: #ccc;
 .pf-c-login,
 .login-pf {
   background-image: none;
-  background-color: #304156;
+  background-color: #343537;
 }
 
 // Menu thin and remove margin in top
@@ -37,7 +37,7 @@ $color-grey-background-border: #ccc;
   --pf-c-page__sidebar-body--PaddingTop: 0;
   --pf-c-page__sidebar--md--Width: 210px; // TODO: Remove. Test enlarged message center when removing.
   min-height: 100vh;
-  background-color: #304156;
+  background-color: #343537;
 }
 
 /**
