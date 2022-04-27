@@ -2,8 +2,7 @@ import * as React from 'react';
 
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
-var metrics_url =
-  'https://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&var-service=reviews&var-baseline=reviews-v2&var-candidate=reviews-v3&var-candidate=reviews-v4&var-namespace=bookinfo-iter8&var-window_size=30s&kiosk=tv';
+var metrics_url = 'https://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk';
 
 interface isState {
   iFrameHeight: string;

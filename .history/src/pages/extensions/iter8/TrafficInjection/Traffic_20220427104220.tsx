@@ -4,6 +4,7 @@ import { RenderContent } from '../../../../components/Nav/Page';
 import { style } from 'typestyle';
 import { Table } from 'antd';
 
+
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
 var traffic_url = 'https://fortio.ingress.isa.buaanlsde.cn/fortio/';
@@ -27,31 +28,25 @@ export default class MetricsPage extends React.Component<any, isState> {
     {
       title: '微服务项目',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
     },
     {
       title: '命名空间',
       dataIndex: 'namespace',
-      key: 'namespace'
+      key: 'namespace',
     },
     {
       title: '访问地址',
       dataIndex: 'url',
-      key: 'url'
+      key: 'url',
     },
     {
       title: '操作',
       key: 'action',
-      render: record => (
-        <a
-          onClick={() => {
-            window.open(record.url);
-          }}
-        >
-          点击访问
-        </a>
-      )
-    }
+      render: (record) => (
+          <a onClick={()=>{window.open(record.url) }}>点击访问</a>
+      ),
+    },
   ];
 
   data = [
@@ -59,8 +54,8 @@ export default class MetricsPage extends React.Component<any, isState> {
       key: '1',
       name: 'Bookinfo',
       namespace: 'bookinfo-iter8',
-      url: 'http://bookinfo-iter8.ingress.isa.buaanlsde.cn/productpage'
-    }
+      url: 'http://bookinfo-iter8.ingress.isa.buaanlsde.cn/productpage',
+    },
   ];
 
   render() {

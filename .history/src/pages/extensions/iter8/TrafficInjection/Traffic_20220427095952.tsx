@@ -2,7 +2,6 @@ import * as React from 'react';
 import DefaultSecondaryMasthead from '../../../../components/DefaultSecondaryMasthead/DefaultSecondaryMasthead';
 import { RenderContent } from '../../../../components/Nav/Page';
 import { style } from 'typestyle';
-import { Table } from 'antd';
 
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
@@ -22,47 +21,6 @@ export default class MetricsPage extends React.Component<any, isState> {
     };
   }
 
-  //服务访问地址表格
-  columns = [
-    {
-      title: '微服务项目',
-      dataIndex: 'name',
-      key: 'name'
-    },
-    {
-      title: '命名空间',
-      dataIndex: 'namespace',
-      key: 'namespace'
-    },
-    {
-      title: '访问地址',
-      dataIndex: 'url',
-      key: 'url'
-    },
-    {
-      title: '操作',
-      key: 'action',
-      render: record => (
-        <a
-          onClick={() => {
-            window.open(record.url);
-          }}
-        >
-          点击访问
-        </a>
-      )
-    }
-  ];
-
-  data = [
-    {
-      key: '1',
-      name: 'Bookinfo',
-      namespace: 'bookinfo-iter8',
-      url: 'http://bookinfo-iter8.ingress.isa.buaanlsde.cn/productpage'
-    }
-  ];
-
   render() {
     console.log(traffic_url);
     return (
@@ -72,7 +30,6 @@ export default class MetricsPage extends React.Component<any, isState> {
         </div>
         <RenderContent>
           <div className={containerPadding}>
-            <Table columns={this.columns} dataSource={this.data} />
             <div>
               <iframe
                 ref="iframe"

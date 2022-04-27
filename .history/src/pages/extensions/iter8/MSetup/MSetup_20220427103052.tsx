@@ -26,6 +26,7 @@ const text3 = `
 sum(increase(istio_requests_total{response_code=~'5..',reporter='source',job='kubernetes-pods'}[$interval])) by ($version_labels)
 `;
 
+
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
 var yaml_url = 'https://yamleditor.ingress.isa.buaanlsde.cn/';
@@ -81,7 +82,7 @@ export default class MetricsPage extends React.Component<any, isState> {
             <Panel header="total_latency（累计延迟）" key="2">
               <p>{text2}</p>
             </Panel>
-            <Panel header="error_count（响应错误数）" key="3">
+            <Panel header="error_coun（响应错误数）" key="3">
               <p>{text3}</p>
             </Panel>
           </Collapse>

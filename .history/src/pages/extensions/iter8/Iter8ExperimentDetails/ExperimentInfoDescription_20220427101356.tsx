@@ -24,7 +24,7 @@ import {
   Tabs,
   Text,
   TextVariants,
-  Title
+  Title,
   // Tooltip
 } from '@patternfly/react-core';
 
@@ -90,17 +90,19 @@ class ExperimentInfoDescription extends React.Component<ExperimentInfoDescriptio
   serviceLinkCell(bname: string) {
     return [
       <DataListCell key={bname}>
-        <Text component={TextVariants.h3}>{bname}</Text>
+        <Text component={TextVariants.h3}>
+          {bname}
+        </Text>
       </DataListCell>
     ];
   }
 
   renderDeployments(baseline: string, kind: string) {
     let linkTo = '/namespaces/' + this.props.namespace + '/workloads/' + baseline;
-    linkTo = '/metrics';
+    linkRo = '/metrics'
     if (kind === 'Service') {
       linkTo = '/namespaces/' + this.props.namespace + '/services/' + baseline;
-      linkTo = '/metrics';
+      linkRo = '/metrics'
     }
     return (
       <ListItem key={`AppService_${baseline}`}>

@@ -2,7 +2,8 @@ import * as React from 'react';
 import DefaultSecondaryMasthead from '../../../../components/DefaultSecondaryMasthead/DefaultSecondaryMasthead';
 import { RenderContent } from '../../../../components/Nav/Page';
 import { style } from 'typestyle';
-import { Table } from 'antd';
+import { Table, Space } from 'antd';
+
 
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
@@ -25,33 +26,30 @@ export default class MetricsPage extends React.Component<any, isState> {
   //服务访问地址表格
   columns = [
     {
-      title: '微服务项目',
+      title: 'Name',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
+      render: text => <a>{text}</a>,
     },
     {
-      title: '命名空间',
+      title: 'Namespace',
       dataIndex: 'namespace',
-      key: 'namespace'
+      key: 'namespace',
     },
     {
-      title: '访问地址',
+      title: 'Url',
       dataIndex: 'url',
-      key: 'url'
+      key: 'url',
     },
     {
-      title: '操作',
+      title: 'Action',
       key: 'action',
-      render: record => (
-        <a
-          onClick={() => {
-            window.open(record.url);
-          }}
-        >
-          点击访问
-        </a>
-      )
-    }
+      render: (record) => (
+        <Space size="middle">
+          <a>{record.name}</a>
+        </Space>
+      ),
+    },
   ];
 
   data = [
@@ -59,8 +57,8 @@ export default class MetricsPage extends React.Component<any, isState> {
       key: '1',
       name: 'Bookinfo',
       namespace: 'bookinfo-iter8',
-      url: 'http://bookinfo-iter8.ingress.isa.buaanlsde.cn/productpage'
-    }
+      url: 'http://bookinfo-iter8.ingress.isa.buaanlsde.cn/productpage?u=normal',
+    },
   ];
 
   render() {
@@ -72,7 +70,6 @@ export default class MetricsPage extends React.Component<any, isState> {
         </div>
         <RenderContent>
           <div className={containerPadding}>
-            <Table columns={this.columns} dataSource={this.data} />
             <div>
               <iframe
                 ref="iframe"

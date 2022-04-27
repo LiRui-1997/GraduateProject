@@ -26,6 +26,7 @@ const text3 = `
 sum(increase(istio_requests_total{response_code=~'5..',reporter='source',job='kubernetes-pods'}[$interval])) by ($version_labels)
 `;
 
+
 // iframe Url
 // var metrics_url = "http://metric.ingress.isa.buaanlsde.cn/d/eXPEaNnZz/experiment-metrics?orgId=1&refresh=10s&kiosk=tv"
 var yaml_url = 'https://yamleditor.ingress.isa.buaanlsde.cn/';
