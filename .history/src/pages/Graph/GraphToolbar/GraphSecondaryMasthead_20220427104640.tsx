@@ -7,7 +7,7 @@ import { GraphTourStops } from '../GraphHelpTour';
 import ToolbarDropdown from 'components/ToolbarDropdown/ToolbarDropdown';
 import { GraphType } from 'types/Graph';
 import * as _ from 'lodash';
-import TimeDurationContainer from '../../../components/Time/TimeDurationComponent';
+// import TimeDurationContainer from '../../../components/Time/TimeDurationComponent';
 // import GraphTrafficContainer from './GraphTraffic';
 
 type GraphSecondaryMastheadProps = {
@@ -36,9 +36,9 @@ const vrStyle = style({
   width: '1px'
 });
 
-const rightToolbarStyle = style({
-  float: 'right'
-});
+// const rightToolbarStyle = style({
+//   float: 'right'
+// });
 
 /**
  *  Key-value pair object representation of GraphType enum.  Values are human-readable versions of enum keys.
