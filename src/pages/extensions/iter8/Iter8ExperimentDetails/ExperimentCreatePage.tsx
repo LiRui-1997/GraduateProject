@@ -16,7 +16,7 @@ import {
   Popover,
   Switch,
   // Text,
-  TextInputBase as TextInput,
+  TextInputBase as TextInput
   // TextVariants
 } from '@patternfly/react-core';
 import history from '../../../../app/History';
@@ -191,7 +191,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
     this.promises
       .register('iter8Metrics', API.getIter8Metrics())
       .then(mresponse => {
-        let metricsNames: string[] = ['-- 请选择 ---'];
+        let metricsNames: string[] = ['-- 请选择性能指标 ---'];
         metricsNames = metricsNames.concat(mresponse.data);
         this.setState(prevState => {
           return {
@@ -1002,9 +1002,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
                     headerContent={<div>流量控制</div>}
                     bodyContent={
                       <div>
-                        <p>
-                          设置实验运行过程中的全局流量控制条件
-                        </p>{' '}
+                        <p>设置实验运行过程中的全局流量控制条件</p>{' '}
                         {/* <b>Traffic Control Strategies:</b> (reference{' '}
                         <a
                           href="https://iter8.tools/reference/algorithms/#traffic-control-strategies"

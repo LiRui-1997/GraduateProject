@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { style } from 'typestyle';
-import { SummaryPanelPropType, BoxByType } from '../../types/Graph';
-import SummaryPanelEdge from './SummaryPanelEdge';
+// import { SummaryPanelPropType, BoxByType } from '../../types/Graph';
+import { SummaryPanelPropType } from '../../types/Graph';
+// import SummaryPanelEdge from './SummaryPanelEdge';
 // import SummaryPanelGraph from './SummaryPanelGraph';
-import SummaryPanelAppBox from './SummaryPanelAppBox';
+// import SummaryPanelAppBox from './SummaryPanelAppBox';
 import { KialiIcon } from 'config/KialiIcon';
-import SummaryPanelNodeContainer from './SummaryPanelNode';
+// import SummaryPanelNodeContainer from './SummaryPanelNode';
 import { JaegerState } from 'reducers/JaegerState';
 import SummaryPanelTraceDetailsContainer from './SummaryPanelTraceDetails';
 import { KialiAppState } from 'store/Store';
-import SummaryPanelClusterBox from './SummaryPanelClusterBox';
-import SummaryPanelNamespaceBox from './SummaryPanelNamespaceBox';
-import { CyNode } from 'components/CytoscapeGraph/CytoscapeGraphUtils';
+// import SummaryPanelClusterBox from './SummaryPanelClusterBox';
+// import SummaryPanelNamespaceBox from './SummaryPanelNamespaceBox';
+// import { CyNode } from 'components/CytoscapeGraph/CytoscapeGraphUtils';
 import { GraphTourStops } from 'pages/Graph/GraphHelpTour';
 import TourStopContainer from 'components/Tour/TourStop';
 
@@ -82,9 +83,9 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
     if (!this.props.isPageVisible || !this.props.data.summaryTarget) {
       return null;
     }
-    const summaryType = this.props.data.summaryType as string;
-    const boxType: BoxByType | undefined =
-      summaryType === 'box' ? this.props.data.summaryTarget.data(CyNode.isBox) : undefined;
+    // const summaryType = this.props.data.summaryType as string;
+    // const boxType: BoxByType | undefined =
+    //   summaryType === 'box' ? this.props.data.summaryTarget.data(CyNode.isBox) : undefined;
 
     const mainTopStyle = this.state.isVisible
       ? this.props.jaegerState.selectedTrace
@@ -98,15 +99,15 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
             <div className={toggleSidePanelStyle} onClick={this.togglePanel}>
               {this.state.isVisible ? (
                 <>
-                  <KialiIcon.AngleDoubleDown /> Hide
+                  <KialiIcon.AngleDoubleDown />
                 </>
               ) : (
                 <>
-                  <KialiIcon.AngleDoubleUp /> Show
+                  <KialiIcon.AngleDoubleUp />
                 </>
               )}
             </div>
-            {summaryType === 'box' && boxType === 'app' && (
+            {/* {summaryType === 'box' && boxType === 'app' && (
               <SummaryPanelAppBox
                 data={this.props.data}
                 duration={this.props.duration}
@@ -146,7 +147,7 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
               />
             )}
             {summaryType === 'edge' && <SummaryPanelEdge {...this.props} />}
-            {/* {summaryType === 'graph' && (
+            {summaryType === 'graph' && (
               <SummaryPanelGraph
                 data={this.props.data}
                 duration={this.props.duration}
@@ -158,7 +159,7 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
                 step={this.props.step}
                 trafficRates={this.props.trafficRates}
               />
-            )} */}
+            )}
             {this.props.data.summaryType === 'node' && (
               <SummaryPanelNodeContainer
                 data={this.props.data}
@@ -171,7 +172,7 @@ class SummaryPanel extends React.Component<MainSummaryPanelPropType, SummaryPane
                 step={this.props.step}
                 trafficRates={this.props.trafficRates}
               />
-            )}
+            )} */}
           </div>
           {this.props.jaegerState.selectedTrace && this.state.isVisible && (
             <div className={`panel panel-default ${summaryPanelBottomSplit}`}>
