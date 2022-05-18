@@ -62,7 +62,7 @@ const navItems: MenuItem[] = [
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.APPLICATIONS + '/(.*)')]
   },
   {
-    title: '服务配置仓库',
+    title: '版本同步仓库',
     to: '/' + Paths.Repo,
     pathsActive: [new RegExp('^/namespaces/(.*)/' + Paths.WORKLOADS + '/(.*)')]
   }

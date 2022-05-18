@@ -86,7 +86,7 @@ const InitializingScreen: React.FC<initializingScreenProps> = (props: initializi
           ) : null}
         </div>
       ) : (
-        <h1>加载中...</h1>
+        <h1>Loading...</h1>
       )}
     </div>
   );

@@ -57,7 +57,7 @@ const defaultServerConfig: ComputedServerConfig = {
   deployment: {
     viewOnlyMode: false
   },
-  installationTag: '持续交付系统',
+  installationTag: 'Continuous Delivery Console',
   istioAnnotations: {
     istioInjectionAnnotation: 'sidecar.istio.io/inject'
   },

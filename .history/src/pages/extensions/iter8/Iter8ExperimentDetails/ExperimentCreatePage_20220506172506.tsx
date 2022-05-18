@@ -729,7 +729,7 @@ class ExperimentCreatePage extends React.Component<Props, State> {
       <>
         <Grid gutter="md">
           <GridItem span={12}>
-            <div className={durationTimeStyle}>实验总时长: {this.state.totalDuration}</div>
+            <div className={durationTimeStyle}>Total Experiment Duration: {this.state.totalDuration}</div>
           </GridItem>
           <GridItem span={6}>
             <FormGroup

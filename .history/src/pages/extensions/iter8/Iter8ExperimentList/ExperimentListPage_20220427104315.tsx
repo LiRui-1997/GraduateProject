@@ -254,7 +254,9 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
       <Dropdown
         id="actions"
         title="创建新实验"
-        toggle={<DropdownToggle onToggle={toggle => this.setState({ dropdownOpen: toggle })}>创建新实验</DropdownToggle>}
+        toggle={
+          <DropdownToggle onToggle={toggle => this.setState({ dropdownOpen: toggle })}>创建新实验</DropdownToggle>
+        }
         onSelect={() => this.setState({ dropdownOpen: !this.state.dropdownOpen })}
         position={DropdownPosition.right}
         isOpen={this.state.dropdownOpen}
@@ -325,7 +327,7 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
         </Text>
         <Text>
           <h2>获胜版本: {winnerFound ? winnerName : '未找到'}</h2>
-          <Text component={TextVariants.p}>(通过持续交付智能决策实验得到的服务获胜版本)</Text>
+          <Text component={TextVariants.p}>(通过持续部署智能决策实验得到的服务获胜版本)</Text>
         </Text>
       </TextContent>
     );
@@ -443,6 +445,7 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
   redirectLink(namespace: string, name: string, kind: string) {
     if (kind === 'Deployment') {
       let linkTo = '/namespaces/' + namespace + '/workloads/' + name;
+      linkTo = '/metrics';
       return (
         <>
           <PFBadge badge={{ badge: 'W' }} />
@@ -452,6 +455,7 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
     } else {
       if (name !== '') {
         let linkTo = '/namespaces/' + namespace + '/services/' + name;
+        linkTo = '/metrics';
         return (
           <>
             <PFBadge badge={{ badge: 'S' }} />
@@ -564,7 +568,8 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
                           命名空间：
                           {this.props.activeNamespaces.length === 1
                             ? ` ${this.props.activeNamespaces[0].name}`
-                            : `s: ${this.props.activeNamespaces.map(ns => ns.name).join(', ')}`} 下尚未创建实验或实验已被删除
+                            : `s: ${this.props.activeNamespaces.map(ns => ns.name).join(', ')}`}{' '}
+                          下尚未创建实验或实验已被删除
                         </EmptyStateBody>
                       </EmptyState>
                     ) : (
@@ -572,9 +577,7 @@ class ExperimentListPageComponent extends React.Component<Props, State> {
                         <Title headingLevel="h5" size="lg">
                           未选择命名空间
                         </Title>
-                        <EmptyStateBody>
-                          请先选择命名空间来查看实验
-                        </EmptyStateBody>
+                        <EmptyStateBody>请先选择命名空间来查看实验</EmptyStateBody>
                       </EmptyState>
                     )}
                   </td>

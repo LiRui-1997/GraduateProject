@@ -3,7 +3,7 @@ import { Alert, Button } from '@patternfly/react-core';
 import { style } from 'typestyle';
 import { isKioskMode } from '../utils/SearchParamUtils';
 
-import kialiTitle from '../assets/img/buaa-logo.svg';
+import kialiTitle from '../assets/img/logo-lightbkg.svg';
 
 type initializingScreenProps = {
   errorMsg?: string;
@@ -86,7 +86,7 @@ const InitializingScreen: React.FC<initializingScreenProps> = (props: initializi
           ) : null}
         </div>
       ) : (
-        <h1>加载中...</h1>
+        <h1>Loading...</h1>
       )}
     </div>
   );

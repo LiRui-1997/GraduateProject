@@ -61,7 +61,7 @@ export default class DefaultSecondaryMasthead extends React.Component<Props> {
       } else if (path === 'istio') {
         title = '服务网格资源配置';
       } else if (path === 'extensions/iter8') {
-        title = '持续交付智能决策实验';
+        title = '持续部署智能决策实验';
       } else if (path === 'extensions/iter8/new') {
         title = '创建新的智能决策实验';
         disabled = true;
